@@ -1,0 +1,20 @@
+<div class="home-main" fxLayout="column" fxLayoutAlign="none none" fxFlex="70" fxFlexOffset="15">
+  <div fxLayout="row">
+    <div fxFlex="20">
+      <button class="category-button" mat-raised-button [matMenuTriggerFor]="category"><mat-icon>menu</mat-icon> Danh Mục Sản Phẩm</button>
+      <mat-menu #category="matMenu">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let category of categories">
+              <a matLine href="/category?id={{ category.categoryId }}"><mat-icon>info</mat-icon>{{ category.categoryName }}</a>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-menu>
+    </div>
+    <div fxFlex="80">
+      <app-search></app-search>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

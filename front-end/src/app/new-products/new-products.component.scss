@@ -1,0 +1,32 @@
+.product-card {
+    cursor: pointer;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+.product-card-div {
+    padding: 10px;
+}
+
+.product-title {
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    // width: 160px; 
+    height: 1.2em; 
+    white-space: nowrap;
+  }
+mat-grid-tile {
+    background-color: azure;
+}
+
+//customize library
+::ng-deep .mat-card-header-text {
+    margin: 0px !important;
+  }
+
+.mat-card-image {
+    width: calc(100%);
+    margin: 0px;
+}

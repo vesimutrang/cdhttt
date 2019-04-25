@@ -1,0 +1,29 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxFlex="70" fxFlexOffset="15">
+      <a href="/"><img src="../logo.png" alt="Logo"></a><span>Hãy đầu tư cho chiếc Pc của bạn</span>
+      <span class="example-spacer"></span>
+      <button class="example-icon" mat-button><mat-icon matBadge="4" matBadgeColor="warn" aria-hidden="false" aria-label="notifications">notifications_active</mat-icon></button>
+      <button class="example-icon" mat-button><mat-icon aria-hidden="false" matBadge="4" matBadgeColor="warn" aria-label="shopping_cart">shopping_cart</mat-icon></button>
+      <button class="example-icon" mat-button [matMenuTriggerFor]="menu"><mat-icon aria-hidden="false" aria-label="profile">person</mat-icon>{{username}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item><mat-icon aria-hidden="false" aria-label="carts">shop</mat-icon>Theo dõi đơn hàng</button>
+        <button mat-menu-item><mat-icon aria-hidden="false" aria-label="account_box">account_box</mat-icon>Thông tin tài khoản</button>
+        <button mat-menu-item><mat-icon aria-hidden="false" aria-label="location_on">location_on</mat-icon>Quản lý địa điểm giao hàng</button>
+        <button mat-menu-item><mat-icon aria-hidden="false" aria-label="monetization_on">monetization_on</mat-icon>Coins</button>
+        <button mat-menu-item><mat-icon aria-hidden="false" aria-label="code">code</mat-icon>Mã khuyến mãi</button>
+        <button mat-menu-item><mat-icon aria-hidden="false" aria-label="input">input</mat-icon>Đăng xuất</button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <div id="btmFooter" fxFlex="70" fxFlexOffset="15">
+    <span> <strong>© 2016 - Bản quyền của Công Ty Cổ Phần ABC </strong></span>
+    <br>
+    <span>Giấy chứng nhận Đăng ký Kinh doanh số 0309532909 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 06/01/2010</span>
+  </div>
+</footer>

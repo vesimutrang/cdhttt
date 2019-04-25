@@ -1,0 +1,32 @@
+<div fxLayout="column">
+  <div fxLayout="row" class="product-detail">
+    <div fxFlex="40" class="product-image">
+      images
+    </div>
+    <div fxFlex="60" class="product-overview">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title><strong>{{product.productName}}</strong></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+                {{product.shortDescription}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+              <mat-form-field class="input-amount">
+                <input matInput type="number" value="1" min="1" max="{{product.amount}}">
+              </mat-form-field>
+            <button mat-raised-button color="accent" >Thêm sản phẩm</button>
+            <button mat-raised-button color="warn">Share</button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
+  <div class="product-description">
+    desciption
+  </div>
+  <div class="product-comment">
+      comment
+    </div>
+</div>

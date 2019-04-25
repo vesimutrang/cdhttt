@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="none none" fxLayoutGap="10px">
+  <div>
+      <slideshow [height]="'372px'"
+              [minHeight]="'372px'"
+              [autoPlay]="true"
+              [showArrows]="true"
+              [showDots]="true"
+              [imageUrls]="imageSources"
+              [lazyLoad]="imageSources?.length > 1"
+              [autoPlayWaitForLazyLoad]="true">
+      </slideshow>
+    </div>
+    <div fxLayout="column">
+      <div fxFlex="100">
+        <mat-card><h2>Sản phẩm mới</h2></mat-card>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+        <div class="product-card-div" fxFlex="25%" *ngFor="let product of newProducts">
+          <mat-card class="product-card" (click)="navigate(product.productId)">
+            <mat-card-header>
+              <mat-card-title class="product-title"> <strong>{{ product.productName }}</strong></mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="assets/images/product/product_1.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+              <div class="product-title">{{ product.shortDescription }}</div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+</div>
