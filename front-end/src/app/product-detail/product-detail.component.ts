@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/service/product.service';
+import { CartService } from 'src/service/cart.service';
+import { ProductDetail } from 'src/models/productDetail';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,11 +9,16 @@ import { ProductService } from 'src/service/product.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  product = {};
-  constructor(private productService: ProductService) { }
+  product: ProductDetail;
+  amount:number = 1;
+  constructor(private productService: ProductService,
+    private cartService: CartService) { }
 
   ngOnInit() {
     this.product = this.productService.getProduct(1);
   }
 
+  addingItemToCart() {
+    this.cartService.addItem(this.product, this.amount);
+  }
 }

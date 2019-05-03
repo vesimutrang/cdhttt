@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IImage } from 'ng-simple-slideshow/src/app/modules/slideshow/IImage';
+import { ProductDetail } from 'src/models/productDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -123,7 +124,7 @@ export class ProductService {
       "productId": 1,
       "productName" : "DELL SE2419H",
       "price": 4294000,
-      "amount": 20,
+      "quantity": 20,
       "by": "dell",
       "shortDescription": "Màn Hình Máy Tính Dell (DELL) SE2419H (23.8 inch)",
       "description" : "<h3>Thiết kế đơn giản gọn nhẹ </h3> <br> Màn Hình Dell S2216H 23.8 inch IPS - Full HD được thiết kế phù hợp với không gian văn phòng với thiết kế, nhỏ họn nhưng chắc chắn được đặt trên đế chắc chắn, giúp giải phóng không gian làm việc, tạo sự thoải mái khi làm việc cho người dùng.Điều chỉnh theo sự thoải mái của bạn: nghiêng và điều chỉnh chiều cao của màn hình cho một thiết lập thoải mái suốt cả ngày.<h3>Thiết kế màn hình mỏng tạo không giản làm việc thoải mái</h3> <br> Thiết kế bezel siêu mỏng ba mặt cho phép bạn tận hưởng chế độ xem không bị gián đoạn nội dung của bạn trên nhiều màn hình. Và với màn hình kép, bạn có thể tăng năng suất lên đến 18%.",
@@ -151,7 +152,11 @@ export class ProductService {
     return this.slideshows;
   }
 
-  public getProduct(id) {
-    return this.product;
+  public getProduct(id): ProductDetail {
+    const product = new ProductDetail(1,1,'DELL SE2419H',4294000,20,'dell',[{"imageId": 1,"tooltip": "thiết kế sang trọng","source": "base64/.."},
+  {"imageId": 2,"tooltip": "bla bla bla bla","source": "base64/.."}],
+  "<h3>Thiết kế đơn giản gọn nhẹ </h3> <br> Màn Hình Dell S2216H 23.8 inch IPS - Full HD được thiết kế phù hợp với không gian văn phòng với thiết kế, nhỏ họn nhưng chắc chắn được đặt trên đế chắc chắn, giúp giải phóng không gian làm việc, tạo sự thoải mái khi làm việc cho người dùng.Điều chỉnh theo sự thoải mái của bạn: nghiêng và điều chỉnh chiều cao của màn hình cho một thiết lập thoải mái suốt cả ngày.<h3>Thiết kế màn hình mỏng tạo không giản làm việc thoải mái</h3> <br> Thiết kế bezel siêu mỏng ba mặt cho phép bạn tận hưởng chế độ xem không bị gián đoạn nội dung của bạn trên nhiều màn hình. Và với màn hình kép, bạn có thể tăng năng suất lên đến 18%.",
+  "Màn Hình Máy Tính Dell (DELL) SE2419H (23.8 inch)");
+    return product;
   }
 }
