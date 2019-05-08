@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/service/cart.service';
 import { CartItem } from 'src/models/item';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ export class AppComponent implements OnInit {
   title = 'front-end';
   username: string = 'Phi Nguyễn';
   cartItems: CartItem[] = [];
-  constructor(private cartService: CartService){
+  constructor(private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router){
 
   }
 
@@ -19,5 +22,9 @@ export class AppComponent implements OnInit {
     this.cartService.cartSubject.subscribe(cartItems => {
       this.cartItems = cartItems;
     });
+  }
+
+  goToCart() {
+    this.router.navigate(['cart']);
   }
 }

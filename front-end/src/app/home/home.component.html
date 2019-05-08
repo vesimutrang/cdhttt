@@ -3,11 +3,7 @@
     <div fxFlex="20">
       <button class="category-button" mat-raised-button [matMenuTriggerFor]="category"><mat-icon>menu</mat-icon> Danh Mục Sản Phẩm</button>
       <mat-menu #category="matMenu">
-        <mat-nav-list>
-          <mat-list-item *ngFor="let category of categories">
-              <a matLine href="/category?id={{ category.categoryId }}"><mat-icon>info</mat-icon>{{ category.categoryName }}</a>
-          </mat-list-item>
-        </mat-nav-list>
+        <button mat-menu-item *ngFor="let category of categories"><mat-icon aria-hidden="false" aria-label="carts">local_offer</mat-icon>{{ category.categoryName }}</button>
       </mat-menu>
     </div>
     <div fxFlex="80">
