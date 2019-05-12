@@ -1,11 +1,11 @@
-<div class="cart-main" fxLayout="column" fxLayoutAlign="none none" fxFlex="70" fxFlexOffset="15">
-  <div>
+<div class="cart-main" fxLayout="column" fxLayoutAlign="none none" fxFlex="70" fxFlexOffset="15" style="margin-bottom: 10px;">
+  <div style="margin-bottom: 10px;">
     <mat-card>
       <h3>Giỏ hàng</h3>
     </mat-card>
   </div>
   <div fxLayout="row">
-    <div class="cart-detail" fxFlex="70%">
+    <div class="cart-detail" fxFlex="100%">
       <mat-card class="product-card">
         <div fxLayout="column">
           <div *ngFor="let item of products">
@@ -27,9 +27,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="quantity-item" fxFlex="20%">
+                <div class="quantity-item" fxFlex="17%">
                   <div fxLayout="column">
-                    <div><h4>Số lượng</h4></div>
+                    <div>
+                      <h4>Số lượng</h4>
+                    </div>
                     <div>
                       <mat-form-field class="input-quantity">
                         <input matInput type="number" [value]="item.buyingQuantity" min="1" max="{{item.quantity}}" (input)="onQuantityChange(item, $event.target.value)">
@@ -37,31 +39,50 @@
                     </div>
                   </div>
                 </div>
-                <div class="price-item" fxFlex="15%">
+                <div class="price-item" fxFlex="14%">
                   <div fxLayout="column">
-                    <div><h4>Đơn giá</h4></div>
-                    <div>{{item.price}}</div>
+                    <div>
+                      <h4>Đơn giá</h4>
+                    </div>
+                    <div>{{item.price}} đ</div>
                   </div>
                 </div>
-                <div class="amount-item" fxFlex="15%">
+                <div class="amount-item" fxFlex="14%">
                   <div fxLayout="column">
-                    <div><h4>Thành tiền</h4></div>
-                    <div>{{item.amount}}</div>
+                    <div>
+                      <h4>Thành tiền</h4>
+                    </div>
+                    <div>{{item.amount}} đ</div>
+                  </div>
+                </div>
+                <div class="delte-item" fxFlex="5%">
+                  <div fxLayout="column">
+                    <div>
+                      <button mat-button (click)="deleteItem()">X</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div>
-
-            </div>
+          </div>
+          <div>
             <hr>
+          </div>
+          <div fxLayout="row">
+            <div fxFlexOffset="67%" fxFlex="14%">
+              <strong>Tổng tiền:</strong>
+            </div>
+            <div fxFlex="19%">
+              <strong>{{sumOfAmount}} đ</strong>
+            </div>
+          </div>
+          <div fxLayout="row" style="margin: 10px 10px;">
+            <div fxFlexOffset="81%" fxFlex="14%">
+              <button mat-raised-button color="accent" (click)="checkout()">Thanh toán</button>
+            </div>
           </div>
         </div>
       </mat-card>
-    </div>
-    <div class="sample-bill" fxFlex="30%">
-      bill
     </div>
   </div>
 </div>

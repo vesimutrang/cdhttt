@@ -1,3 +1,36 @@
-<p>
-  checkout works!
-</p>
+<div class="cart-main" fxLayout="column" fxLayoutAlign="none none" fxFlex="70" fxFlexOffset="15" style="margin-bottom: 10px;">
+    <div style="margin-bottom: 10px;">
+      <mat-card>
+        <h3>Thanh toán</h3>
+      </mat-card>
+    </div>
+    <div fxLayout="row">
+      <div class="checkout-info" fxFlex="70%">
+        <mat-card class="info-card">
+          <div fxLayout="column">
+            <div>
+              <hr>
+            </div>
+            <div fxLayout="row">
+              <div fxFlexOffset="67%" fxFlex="14%">
+                <strong>Tổng tiền:</strong>
+              </div>
+              <div fxFlex="19%">
+                <strong>{{sumOfAmount}} đ</strong>
+              </div>
+            </div>
+            <div fxLayout="row" style="margin: 10px 10px;">
+              <div fxFlexOffset="81%" fxFlex="14%">
+                <button mat-raised-button color="accent" (click)="checkout()">Thanh toán</button>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="cart-detail" fxFlex="30%">
+          <mat-card class="cart-card">
+
+          </mat-card>
+      </div>
+    </div>
+  </div>
