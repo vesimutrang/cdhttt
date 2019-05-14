@@ -1,80 +1,106 @@
-<div class="cart-main" fxLayout="column" fxLayoutAlign="none none" fxFlex="70" fxFlexOffset="15" style="margin-bottom: 10px;">
-    <div style="margin-bottom: 10px;">
-      <mat-card>
-        <h3>Thanh toán</h3>
+<div class="cart-main" fxLayout="column" fxLayoutAlign="none none" fxFlex="70" fxFlexOffset="15"
+  style="margin-bottom: 10px;">
+  <div style="margin-bottom: 10px;">
+    <mat-card>
+      <h3>Thanh toán</h3>
+    </mat-card>
+  </div>
+  <div fxLayout="row">
+    <div class="checkout-info" fxFlex="60%">
+      <mat-card class="info-card">
+        <div fxLayout="column">
+          <div>
+            <h3>Thông tin đơn hàng:</h3>
+          </div>
+          <div>
+            <form class="example-form">
+              <mat-form-field class="user-info">
+                <input matInput placeholder="Khách hàng" disabled value="Phi Nguyễn">
+              </mat-form-field>
+              <mat-form-field class="user-info">
+                <input matInput placeholder="Số điện thoại" disabled value="037 405 4736">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Địa chỉ giao hàng">51A đường Phan Đăng Lưu, Phường 3, quận Phú Nhuận, Tp Hồ Chí Minh</textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Ghi chú"></textarea>
+              </mat-form-field>
+
+              <section class="example-section">
+                <mat-radio-group>
+                  <mat-radio-button checked value="after">Thanh toán khi nhận hàng (COD)</mat-radio-button>
+                  <mat-radio-button class="example-margin" value="before">Thẻ ATM nội địa</mat-radio-button>
+                </mat-radio-group>
+              </section>
+
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Nhập mã giảm giá">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+
+              <section class="example-section">
+                <mat-checkbox>Bọc quà tặng</mat-checkbox>
+              </section>
+              <section class="example-section">
+                <mat-checkbox>Xuất hóa đơn</mat-checkbox>
+              </section>          
+            </form>
+          </div>
+        </div>
       </mat-card>
     </div>
-    <div fxLayout="row">
-      <div class="checkout-info" fxFlex="70%">
-        <mat-card class="info-card">
-          <div fxLayout="column">
-            <div>
-              <h3>Thông tin khách hàng:</h3>
-            </div>
-            <div>
-              <hr>
+    <div class="cart-detail" fxFlex="40%">
+      <mat-card class="cart-card" style="margin-left: 5px;">
+        <div fxLayout="column">
+          <div>
+            <h3>Chi tiết đơn hàng:</h3>
+          </div>
+          <div *ngFor="let item of products;let i = index;" fxLayout="column">
+            <div fxLayout="row">
+              <div fxFlex="70">
+                <span>{{i + 1}}. {{item.productName}} </span>
+              </div>
+              <div>
+                <span>{{item.buyingQuantity}} x {{item.price}} đ</span>
+              </div>
             </div>
             <div fxLayout="row">
-              <div fxFlexOffset="67%" fxFlex="14%">
-                <strong>Tổng tiền:</strong>
+              <div fxFlex="30" fxFlexOffset="20">
+                <span>Thành tiền</span>
               </div>
-              <div fxFlex="19%">
-                <strong>{{sumOfAmount}} đ</strong>
-              </div>
-            </div>
-            <div fxLayout="row" style="margin: 10px 10px;">
-              <div fxFlexOffset="81%" fxFlex="14%">
-                <button mat-raised-button color="accent" (click)="checkout()">Thanh toán</button>
+              <div>
+                <span>{{item.amount}} đ</span>
               </div>
             </div>
           </div>
-        </mat-card>
-      </div>
-      <div class="cart-detail" fxFlex="30%">
-          <mat-card class="cart-card" style="margin-left: 5px;">
-            <div fxLayout="column">
-              <div>
-                <h3>Chi tiết đơn hàng:</h3>
-              </div>
-              <div *ngFor="let item of products;let i = index;" fxLayout="column">
-                <div fxLayout="row">
-                  <div fxFlex="70">
-                    <span>{{i + 1}}. {{item.productName}} </span>
-                  </div>
-                  <div>
-                    <span>{{item.buyingQuantity}} x {{item.price}} đ</span>
-                  </div>
-                </div>
-                <div fxLayout="row">
-                  <div fxFlex="30" fxFlexOffset="20">
-                    <span>Thành tiền</span>
-                  </div>
-                  <div>
-                    <span>{{item.amount}} đ</span>
-                  </div>
-                </div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="50">
-                  <h4>Tổng hóa đơn: </h4>
-                </div>
-                <div>
-                    <h4>{{sumOfAmount}} đ</h4>
-                </div>
-              </div>
-              <div>
-                <hr>
-              </div>
-              <div fxLayout="column">
-                <div><span><i class="checkout-warning">*Kiểm tra kỹ trước khi đặt hàng</i></span></div>
-                <div fxLayout="row">
-                  <div fxFlex="50" fxFlexOffset="50">
-                      <button mat-raised-button color="accent" (click)="checkout()">Đặt hàng</button>
-                  </div>
-                </div>
+          <div fxLayout="row">
+            <div fxFlex="50">
+              <h4>Tổng hóa đơn: </h4>
+            </div>
+            <div>
+              <h4>{{sumOfAmount}} đ</h4>
+            </div>
+          </div>
+          <div>
+            <hr>
+          </div>
+          <div fxLayout="column">
+            <div><span><i class="checkout-warning">*Kiểm tra kỹ trước khi đặt hàng</i></span></div>
+            <div fxLayout="row">
+              <div fxFlex="50" fxFlexOffset="50">
+                <button mat-raised-button color="accent" (click)="checkout()">Đặt hàng</button>
               </div>
             </div>
-          </mat-card>
-      </div>
+          </div>
+        </div>
+      </mat-card>
     </div>
   </div>
+</div>
