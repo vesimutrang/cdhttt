@@ -20,4 +20,9 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findAll();
 	}
 
+	@Override
+	public List<Product> getNewProducts() {
+		// TODO Auto-generated method stub
+		return productRepository.findFirst10ByOrderById();
+	}
 }

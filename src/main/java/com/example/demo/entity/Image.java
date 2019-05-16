@@ -29,6 +29,11 @@ public class Image {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+	
+	public Image() {
+		super();
+	}
+
 	public Image(String name, String description, String source) {
 		super();
 		this.name = name;

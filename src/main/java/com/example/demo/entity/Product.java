@@ -39,6 +39,11 @@ public class Product {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="product")
 	private Set<Image> images;
 
+	
+	public Product() {
+		super();
+	}
+
 	public Product(String name, Integer price, Integer amount, String producer, String shortDescription,
 			String description, Set<Image> images) {
 		super();

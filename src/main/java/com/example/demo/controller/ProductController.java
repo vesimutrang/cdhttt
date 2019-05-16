@@ -18,9 +18,14 @@ public class ProductController {
 	private ProductService productService;
 	
 	@GetMapping("/products")
-	public ResponseEntity<Object> addEmployee()
-    {
+	public ResponseEntity<Object> products() {
 		List<Product> products = productService.getAllProduct();
+        return ResponseEntity.ok(products);
+    }
+	
+	@GetMapping("/newProducts")
+	public ResponseEntity<Object> newProducts() {
+		List<Product> products = productService.getNewProducts();
         return ResponseEntity.ok(products);
     }
 }
