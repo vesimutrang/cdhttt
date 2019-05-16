@@ -19,7 +19,7 @@ export class NewProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.newProducts = this.productService.getNewProducts();
+    this.newProducts = this.productService.getNewProductsMock();
     this.imageSources = this.productService.getSlideshows();
   }
 

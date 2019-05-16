@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { IImage } from 'ng-simple-slideshow/src/app/modules/slideshow/IImage';
 import { ProductDetail } from 'src/models/productDetail';
+import { HttpClient } from '@angular/common/http';
+import { Product } from 'src/models/product';
+import { Observable } from 'rxjs/internal/Observable';
+import { catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -142,12 +146,25 @@ export class ProductService {
       ]
   }
 
-  constructor() { }
-
-  public getNewProducts() {
-    return this.newProducts;
+  constructor(private http: HttpClient) { }
+  
+  public getNewProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('/api/newProducts')
+    .pipe(
+      catchError((error, reason) => {
+        this.handleError("cannot get new products", reason);
+        return reason;
+      })
+    );
+  }
+  
+  handleError(message: string, input: any): any {
+    console.error(message, input);
   }
 
+  public getNewProductsMock() {
+    return this.newProducts;
+  }
   public getSlideshows() {
     return this.slideshows;
   }

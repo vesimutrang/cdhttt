@@ -19,7 +19,7 @@
             <span><strong>Giá: </strong>{{product.price}} đ</span>
             <br>
             <mat-form-field class="input-quantity">
-              <input matInput type="number" value="{{quantity}}" min="1" max="{{product.quantity}}">
+              <input matInput type="number" value="{{quantity}}" min="1" max="{{product.maxQuantity}}">
             </mat-form-field>
             <button mat-raised-button color="accent" (click)="addingItemToCart()">Thêm sản phẩm</button>
             <button mat-raised-button color="warn">Share</button>

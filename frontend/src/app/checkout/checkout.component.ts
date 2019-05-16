@@ -12,14 +12,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   sumOfAmount: number = 0;
   constructor(private productService: ProductService,
     private cartService: CartService) {
-    this.products = this.productService.getNewProducts();
+    this.products = this.productService.getNewProductsMock();
     this.products.forEach(product => {
       product['buyingQuantity'] = 1;
       product['amount'] = product['buyingQuantity'] * product['price'];
       this.sumOfAmount += product['amount'];
     });
   }
-
+  checkout() {
+    
+  }
   ngOnInit() {
   }
   

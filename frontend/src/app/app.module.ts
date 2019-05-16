@@ -46,6 +46,7 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { NewProductsComponent } from './new-products/new-products.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { NewProductsComponent } from './new-products/new-products.component';
     MatPaginatorModule,
     MatBadgeModule,
     FlexLayoutModule,
-    SlideshowModule
+    SlideshowModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

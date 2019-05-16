@@ -3,6 +3,7 @@ import { CartItem } from '../../models/item';
 import { CartService } from '../../service/cart.service';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/models/product';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CartComponent implements OnInit, OnDestroy {
   cartItems: CartItem[];
-  products = [];
+  products: Product[];
   sumOfAmount:number = 0;
   constructor(private cartService: CartService,
     private productService: ProductService,
@@ -24,7 +25,9 @@ export class CartComponent implements OnInit, OnDestroy {
       // load all items
 
       //just for development
-      this.products = this.productService.getNewProducts();
+      this.productService.getNewProducts().subscribe(products => {
+        this.products = products;
+      });
       this.products.forEach(product => {
         product['buyingQuantity'] = 1;
         product['amount'] = product['buyingQuantity'] * product['price'];
