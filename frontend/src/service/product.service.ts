@@ -84,36 +84,36 @@ export class ProductService {
   slideshows: IImage[] = [
     {
       'url': 'assets/images/slideshow/slideshow_1.jpg',
-      'href': 'string',
-      'caption': 'string',
-      'title': 'string',
+      'href': '/home/product/1',
+      'caption': 'Giảm giá cực hot: VGA 1060, VAG 1050Ti',
+      'title': 'Giảm giá cực hot: VGA 1060, VAG 1050Ti',
       'backgroundSize': 'string',
       'backgroundPosition': 'string',
       'backgroundRepeat': 'string'
     },
     {
       'url': 'assets/images/slideshow/slideshow_2.jpg',
-      'href': 'string',
-      'caption': 'string',
-      'title': 'string',
+      'href': '/home/product/1',
+      'caption': 'Tản nhiệt Infinity',
+      'title': 'Tản nhiệt Infinity',
       'backgroundSize': 'string',
       'backgroundPosition': 'string',
       'backgroundRepeat': 'string'
     },
     {
       'url': 'assets/images/slideshow/slideshow_3.jpg',
-      'href': 'string',
-      'caption': 'string',
-      'title': 'string',
+      'href': '/home/product/1',
+      'caption': 'Infinity Rampage',
+      'title': 'Infinity Rampage',
       'backgroundSize': 'string',
       'backgroundPosition': 'string',
       'backgroundRepeat': 'string'
     },
     {
       'url': 'assets/images/slideshow/slideshow_4.jpg',
-      'href': 'string',
-      'caption': 'string',
-      'title': 'string',
+      'href': '/home/product/1',
+      'caption': 'Siêu khuyến mãi save up to 50%',
+      'title': 'Siêu khuyến mãi save up to 50%',
       'backgroundSize': 'string',
       'backgroundPosition': 'string',
       'backgroundRepeat': 'string'

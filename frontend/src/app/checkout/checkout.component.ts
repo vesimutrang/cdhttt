@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/service/cart.service';
 import { ProductService } from 'src/service/product.service';
 
@@ -7,20 +7,23 @@ import { ProductService } from 'src/service/product.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   products = [];
-  sumOfAmount:number = 0;
+  sumOfAmount: number = 0;
   constructor(private productService: ProductService,
     private cartService: CartService) {
     this.products = this.productService.getNewProducts();
-      this.products.forEach(product => {
-        product['buyingQuantity'] = 1;
-        product['amount'] = product['buyingQuantity'] * product['price'];
-        this.sumOfAmount += product['amount'];
-      });
-   }
+    this.products.forEach(product => {
+      product['buyingQuantity'] = 1;
+      product['amount'] = product['buyingQuantity'] * product['price'];
+      this.sumOfAmount += product['amount'];
+    });
+  }
 
   ngOnInit() {
+  }
+  
+  ngOnDestroy(): void {
   }
 
 }

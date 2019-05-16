@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'src/service/product.service';
 import { CartService } from 'src/service/cart.service';
 import { ProductDetail } from 'src/models/productDetail';
@@ -8,7 +8,7 @@ import { ProductDetail } from 'src/models/productDetail';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   product: ProductDetail;
   quantity: number = 1;
   constructor(private productService: ProductService,
@@ -20,5 +20,9 @@ export class ProductDetailComponent implements OnInit {
 
   addingItemToCart() {
     this.cartService.addItem(this.product, this.quantity);
+  }
+  
+  ngOnDestroy(): void {
+    
   }
 }

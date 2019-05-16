@@ -26,7 +26,6 @@ const routes: Routes = [
       }
     ] 
   },
-  { path: 'product/:id', component: ProductDetailComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart', component: CartComponent }
 ];
