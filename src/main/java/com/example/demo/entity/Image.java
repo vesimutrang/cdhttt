@@ -3,17 +3,20 @@ package com.example.demo.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(appliesTo = "image")
 public class Image {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
 	
 	@Column(name="name", nullable = false, length = 100)
@@ -27,6 +30,7 @@ public class Image {
 	
 	@ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
+	@JsonIgnore
     private Product product;
 
 	
@@ -39,6 +43,24 @@ public class Image {
 		this.name = name;
 		this.description = description;
 		this.source = source;
+	}
+
+	
+	public Image(Long id, String name, String description, String source, Product product) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.source = source;
+		this.product = product;
+	}
+
+	public Image(String name, String description, String source, Product product) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.source = source;
+		this.product = product;
 	}
 
 	public Long getId() {

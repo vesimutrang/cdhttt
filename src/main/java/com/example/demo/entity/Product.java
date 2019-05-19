@@ -2,10 +2,12 @@ package com.example.demo.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -15,7 +17,7 @@ import org.hibernate.annotations.Table;
 @Table(appliesTo = "product")
 public class Product {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
 	
 	@Column(name="name", nullable = false, length = 100)
@@ -36,14 +38,25 @@ public class Product {
 	@Column(nullable = true, length = 2000)
 	private String description;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="product")
+	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
 	private Set<Image> images;
 
 	
 	public Product() {
 		super();
 	}
-
+	
+	public Product(String name, Integer price, Integer amount, String producer, String shortDescription,
+			String description) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.amount = amount;
+		this.producer = producer;
+		this.shortDescription = shortDescription;
+		this.description = description;
+	}
+	
 	public Product(String name, Integer price, Integer amount, String producer, String shortDescription,
 			String description, Set<Image> images) {
 		super();

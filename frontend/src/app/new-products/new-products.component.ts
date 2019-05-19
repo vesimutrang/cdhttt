@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IImage } from 'ng-simple-slideshow/src/app/modules/slideshow/IImage';
 import { ProductService } from 'src/service/product.service';
+import { ProductShort } from 'src/models/product';
 
 @Component({
   selector: 'app-new-products',
@@ -9,7 +10,7 @@ import { ProductService } from 'src/service/product.service';
   styleUrls: ['./new-products.component.scss']
 })
 export class NewProductsComponent implements OnInit, OnDestroy {
-  newProducts = [];
+  newProducts: ProductShort[];
   imageSources: IImage[] = [];
 
   constructor(private route: ActivatedRoute,
@@ -19,7 +20,9 @@ export class NewProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.newProducts = this.productService.getNewProductsMock();
+    this.productService.getNewProducts().subscribe(productShorts => {
+      this.newProducts = productShorts;
+    });
     this.imageSources = this.productService.getSlideshows();
   }
 

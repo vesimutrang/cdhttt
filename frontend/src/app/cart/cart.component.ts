@@ -3,7 +3,7 @@ import { CartItem } from '../../models/item';
 import { CartService } from '../../service/cart.service';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/models/product';
+import { ProductShort } from 'src/models/product';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +12,7 @@ import { Product } from 'src/models/product';
 })
 export class CartComponent implements OnInit, OnDestroy {
   cartItems: CartItem[];
-  products: Product[];
+  products: ProductShort[];
   sumOfAmount:number = 0;
   constructor(private cartService: CartService,
     private productService: ProductService,

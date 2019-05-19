@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ProductShortDTO;
 import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
 
@@ -25,7 +26,7 @@ public class ProductController {
 	
 	@GetMapping("/newProducts")
 	public ResponseEntity<Object> newProducts() {
-		List<Product> products = productService.getNewProducts();
+		List<ProductShortDTO> products = productService.getNewProductsAsShort();
         return ResponseEntity.ok(products);
     }
 }

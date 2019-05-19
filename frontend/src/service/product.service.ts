@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IImage } from 'ng-simple-slideshow/src/app/modules/slideshow/IImage';
 import { ProductDetail } from 'src/models/productDetail';
 import { HttpClient } from '@angular/common/http';
-import { Product } from 'src/models/product';
+import { ProductShort } from 'src/models/product';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError} from 'rxjs/operators';
 
@@ -148,8 +148,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
   
-  public getNewProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('/api/newProducts')
+  public getNewProducts(): Observable<ProductShort[]> {
+    return this.http.get<ProductShort[]>('/api/newProducts')
     .pipe(
       catchError((error, reason) => {
         this.handleError("cannot get new products", reason);

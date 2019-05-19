@@ -20,7 +20,7 @@
             <mat-card-header>
               <mat-card-title class="product-title"> <strong>{{ product.productName }}</strong></mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="assets/images/product/product_1.jpg" alt="Photo of a Shiba Inu">
+            <img mat-card-image [src]="product.image" alt="Product image">
             <mat-card-content>
               <div class="product-title">{{ product.shortDescription }}</div>
             </mat-card-content>

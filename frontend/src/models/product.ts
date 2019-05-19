@@ -1,16 +1,16 @@
-export class Product {
-    productId: number;
-    categoryId: number;
-    productName: String;
+export class ProductShort {
+    id: number;
+    name: String;
     price: number;
-    image: String;
+    producer: String;
     shortDescription: String;
+    image: String;
 
-	constructor($productId: number, $categoryId: number, $productName: String, $price: number, $image: String, $shortDescription: String) {
-		this.productId = $productId;
-		this.categoryId = $categoryId;
-		this.productName = $productName;
+	constructor($id: number, $name: String, $price: number, $producer: String, $image: String, $shortDescription: String) {
+		this.id = $id;
+		this.name = $name;
 		this.price = $price;
+		this.producer = $producer;
 		this.image = $image;
 		this.shortDescription = $shortDescription;
 	}
