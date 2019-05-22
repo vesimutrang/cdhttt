@@ -1,25 +1,25 @@
+import { Image } from 'src/models/image';
 export class ProductDetail {
-    productId: number;
-    categoryId: number;
-    productName: String;
+	id: number;
+	name: String;
 	price: number;
 	maxQuantity: number;
-	by: String;
-	image: any[];
+	producer: String;
+	shortDescription: String;
 	description: String;
-    shortDescription: String;
+	image: Image[];
 
-	constructor($productId: number, $categoryId: number, $productName: String, $price: number, $maxQuantity: number, $by: String, $image: any[], $description: String, $shortDescription: String) {
-		this.productId = $productId;
-		this.categoryId = $categoryId;
-		this.productName = $productName;
+	constructor($id: number, $name: String, $price: number, $maxQuantity: number,
+		$producer: String, $shortDescription: String, $description: String, $image: Image[]) {
+		this.id = $id;
+		this.name = $name;
 		this.price = $price;
 		this.maxQuantity = $maxQuantity;
-		this.by = $by;
-		this.image = $image;
+		this.producer = $producer;
 		this.description = $description;
 		this.shortDescription = $shortDescription;
+		this.image = $image;
 	}
-	
-    
+
+
 }

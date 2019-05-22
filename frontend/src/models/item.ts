@@ -1,4 +1,4 @@
-export class CartItem {
+export class Item {
     id: number;
     quantity: number;
 

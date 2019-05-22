@@ -26,8 +26,8 @@ public class Product {
 	@Column(name="price", nullable = false)
 	private Integer price;
 	
-	@Column(name="amount", nullable = false)
-	private Integer amount;
+	@Column(name="max_quanlity", nullable = false)
+	private Integer maxQuanlity;
 	
 	@Column(name="producer", nullable = true, length = 200)
 	private String producer;
@@ -46,23 +46,23 @@ public class Product {
 		super();
 	}
 	
-	public Product(String name, Integer price, Integer amount, String producer, String shortDescription,
+	public Product(String name, Integer price, Integer maxQuanlity, String producer, String shortDescription,
 			String description) {
 		super();
 		this.name = name;
 		this.price = price;
-		this.amount = amount;
+		this.maxQuanlity = maxQuanlity;
 		this.producer = producer;
 		this.shortDescription = shortDescription;
 		this.description = description;
 	}
 	
-	public Product(String name, Integer price, Integer amount, String producer, String shortDescription,
+	public Product(String name, Integer price, Integer maxQuanlity, String producer, String shortDescription,
 			String description, Set<Image> images) {
 		super();
 		this.name = name;
 		this.price = price;
-		this.amount = amount;
+		this.maxQuanlity = maxQuanlity;
 		this.producer = producer;
 		this.shortDescription = shortDescription;
 		this.description = description;
@@ -93,12 +93,12 @@ public class Product {
 		this.price = price;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getMaxQuanlity() {
+		return maxQuanlity;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setMaxQuanlity(Integer maxQuanlity) {
+		this.maxQuanlity = maxQuanlity;
 	}
 
 	public String getProducer() {
