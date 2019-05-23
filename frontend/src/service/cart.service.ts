@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { CartItem } from 'src/models/item';
+import { Item } from 'src/models/item';
 import { ProductDetail } from 'src/models/productDetail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cartItems: CartItem[] = JSON.parse(localStorage.getItem('carItems')) || [];
-  cartSubject: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>(this.cartItems);
+  items: Item[] = JSON.parse(localStorage.getItem('items')) || [];
+  cartSubject: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>(this.items);
   constructor() { }
 
   addItem(product: ProductDetail, quantity: number): any {
     // calculate
-    this.cartItems = JSON.parse(localStorage.getItem('carItems')) || [];
-    if (this.cartItems) {
-      let item = this.cartItems.find(i => {
-        return i.id === product.productId;
+    this.items = JSON.parse(localStorage.getItem('items')) || [];
+    if (this.items) {
+      let item = this.items.find(i => {
+        return i.id === product.id;
       });
       if (item) {
         item.quantity += quantity;
@@ -24,37 +24,37 @@ export class CartService {
           item.quantity = product.maxQuantity;
         }
       } else {
-        this.cartItems.push(new CartItem(product.productId, quantity));
+        this.items.push(new Item(product.id, quantity));
       }
     } else {
-      this.cartItems.push(new CartItem(product.productId, quantity));
+      this.items.push(new Item(product.id, quantity));
     }
-    localStorage.setItem('carItems',JSON.stringify(this.cartItems));
-    this.cartSubject.next(this.cartItems);
+    localStorage.setItem('items',JSON.stringify(this.items));
+    this.cartSubject.next(this.items);
   }
 
   removeItem(productId: number): any {
     // calculate
-    this.cartItems = this.cartItems.filter(i => {
+    this.items = this.items.filter(i => {
       return i.id === productId;
     });
-    localStorage.setItem('carItems',JSON.stringify(this.cartItems));
-    this.cartSubject.next(this.cartItems);
+    localStorage.setItem('items',JSON.stringify(this.items));
+    this.cartSubject.next(this.items);
   }
 
   changeItemQuantity(productId: number, quantity: number): any {
-    let item = this.cartItems.find(i => {
+    let item = this.items.find(i => {
       return i.id === productId;
     });
     if (item) {
       item.quantity = quantity;
-      localStorage.setItem('carItems',JSON.stringify(this.cartItems));
-      this.cartSubject.next(this.cartItems);
+      localStorage.setItem('items',JSON.stringify(this.items));
+      this.cartSubject.next(this.items);
     }
   }
 
   getAllItems() {
-    return this.cartItems;
+    return this.items;
   }
 
 }
