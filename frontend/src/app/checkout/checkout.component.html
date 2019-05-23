@@ -13,23 +13,23 @@
             <h3>Thông tin đơn hàng:</h3>
           </div>
           <div>
-            <form class="example-form">
+            <form [formGroup]="myGroup" class="example-form">
               <mat-form-field class="user-info">
-                <input matInput placeholder="Khách hàng" disabled value="Phi Nguyễn">
+                <input matInput formControlName="customerName" placeholder="Khách hàng" value="Phi Nguyễn">
               </mat-form-field>
               <mat-form-field class="user-info">
-                <input matInput placeholder="Số điện thoại" disabled value="037 405 4736">
+                <input matInput formControlName="customerPhoneNumber" placeholder="Số điện thoại" value="037 405 4736">
               </mat-form-field>
 
               <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Địa chỉ giao hàng">51A đường Phan Đăng Lưu, Phường 3, quận Phú Nhuận, Tp Hồ Chí Minh</textarea>
+                <textarea matInput formControlName="shippingAdress" placeholder="Địa chỉ giao hàng"></textarea>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Ghi chú"></textarea>
+                <textarea matInput formControlName="note" placeholder="Ghi chú"></textarea>
               </mat-form-field>
 
               <section class="example-section">
-                <mat-radio-group>
+                <mat-radio-group formControlName="paymentMethod">
                   <mat-radio-button checked value="after">Thanh toán khi nhận hàng (COD)</mat-radio-button>
                   <mat-radio-button class="example-margin" value="before">Thẻ ATM nội địa</mat-radio-button>
                 </mat-radio-group>
@@ -39,17 +39,20 @@
                 <tr>
                   <td>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Nhập mã giảm giá">
+                      <input matInput formControlName="code" placeholder="Nhập mã giảm giá">
                     </mat-form-field>
                   </td>
                 </tr>
               </table>
 
               <section class="example-section">
-                <mat-checkbox>Bọc quà tặng</mat-checkbox>
+                <mat-checkbox formControlName="isGiftWrapping">Bọc quà tặng</mat-checkbox>
+                <mat-form-field class="user-info" style="margin-left: 15px;">
+                  <input matInput formControlName="receiverPhoneNumber" placeholder="Số điện thoại người nhận" *ngIf="!isGiftWrapping">
+                </mat-form-field>
               </section>
               <section class="example-section">
-                <mat-checkbox>Xuất hóa đơn</mat-checkbox>
+                <mat-checkbox formControlName="issueAnInvoice">Xuất hóa đơn điệnt tử</mat-checkbox>
               </section>          
             </form>
           </div>
@@ -65,7 +68,7 @@
           <div *ngFor="let item of products;let i = index;" fxLayout="column">
             <div fxLayout="row">
               <div fxFlex="70">
-                <span>{{i + 1}}. {{item.productName}} </span>
+                <span>{{i + 1}}. {{item.name}} </span>
               </div>
               <div>
                 <span>{{item.buyingQuantity}} x {{item.price}} đ</span>

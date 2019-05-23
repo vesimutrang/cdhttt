@@ -47,6 +47,7 @@ import { LoginComponent } from './login/login.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { NewProductsComponent } from './new-products/new-products.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatBadgeModule,
     FlexLayoutModule,
     SlideshowModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
