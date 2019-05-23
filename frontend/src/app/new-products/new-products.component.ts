@@ -21,7 +21,7 @@ export class NewProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.productService.getNewProducts().subscribe(productShorts => {
-      this.newProducts = productShorts;
+      this.newProducts = productShorts.data;
     });
     this.imageSources = this.productService.getSlideshows();
   }

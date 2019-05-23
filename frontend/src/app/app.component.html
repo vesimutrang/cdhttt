@@ -4,7 +4,7 @@
       <a href="/"><img src="assets/logo.png" height="60" alt="Logo"></a>
       <span class="example-spacer"></span>
       <button class="example-icon" mat-button ><mat-icon matBadge="4" matBadgeColor="warn" aria-hidden="false" aria-label="notifications">notifications_active</mat-icon></button>
-      <button class="example-icon" mat-button (click)="goToCart()" [disabled]="cartItems.length === 0"><mat-icon aria-hidden="false" matBadge="{{cartItems.length}}" matBadgeColor="warn" aria-label="shopping_cart">shopping_cart</mat-icon></button>
+      <button class="example-icon" mat-button (click)="goToCart()" [disabled]="items.length === 0"><mat-icon aria-hidden="false" matBadge="{{items.length}}" matBadgeColor="warn" aria-label="shopping_cart">shopping_cart</mat-icon></button>
       <button class="example-icon" mat-button [matMenuTriggerFor]="menu"><mat-icon aria-hidden="false" aria-label="profile">person</mat-icon>{{username}}</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item><mat-icon aria-hidden="false" aria-label="carts">shop</mat-icon>Theo dõi đơn hàng</button>

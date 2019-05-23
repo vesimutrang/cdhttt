@@ -9,13 +9,16 @@ import { ProductDetail } from 'src/models/productDetail';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
-  product: ProductDetail;
+  product: ProductDetail = null;
   quantity: number = 1;
   constructor(private productService: ProductService,
-    private cartService: CartService) { }
+    private cartService: CartService) { 
+      this.productService.getProductMock(1).then(product => {
+        this.product = product.data;
+      });
+    }
 
   ngOnInit() {
-    this.product = this.productService.getProduct(1);
   }
 
   addingItemToCart() {

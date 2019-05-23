@@ -6,10 +6,10 @@
     <div fxFlex="60" class="product-overview">
         <mat-card class="example-card">
           <mat-card-header>
-            <mat-card-title><strong>{{product.productName}}</strong></mat-card-title>
+            <mat-card-title><strong>{{product.name}}</strong></mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <span>Hãng: {{product.by}}</span>
+            <span>Hãng: {{product.producer}}</span>
             <br>
             <p>
                 {{product.shortDescription}}
@@ -19,7 +19,7 @@
             <span><strong>Giá: </strong>{{product.price}} đ</span>
             <br>
             <mat-form-field class="input-quantity">
-              <input matInput type="number" value="{{quantity}}" min="1" max="{{product.maxQuantity}}">
+              <input matInput type="number" [value]="quantity" min="1" max="{{product.maxQuantity}}" (input)="quantity = $event.target.value">
             </mat-form-field>
             <button mat-raised-button color="accent" (click)="addingItemToCart()">Thêm sản phẩm</button>
             <button mat-raised-button color="warn">Share</button>

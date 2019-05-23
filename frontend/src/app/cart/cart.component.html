@@ -14,7 +14,7 @@
               <div fxLayout="row">
                 <div fxLayout="column" fxFlex="50%">
                   <div>
-                    <h4>{{item.productName}}</h4>
+                    <h4>{{item.name}}</h4>
                   </div>
                   <div>
                     <div class="image-item" fxFlex="25%">
@@ -34,7 +34,7 @@
                     </div>
                     <div>
                       <mat-form-field class="input-quantity">
-                        <input matInput type="number" [value]="item.buyingQuantity" min="1" max="{{item.quantity}}" (input)="onQuantityChange(item, $event.target.value)">
+                        <input matInput type="number" [value]="item.buyingQuantity" min="1" max="{{item.maxQuantity}}" (input)="onQuantityChange(item, $event.target.value)">
                       </mat-form-field>
                     </div>
                   </div>

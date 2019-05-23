@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/service/cart.service';
-import { CartItem } from 'src/models/item';
+import { Item } from 'src/models/item';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'front-end';
   username: string = 'Phi Nguyễn';
-  cartItems: CartItem[] = [];
+  items: Item[] = [];
   constructor(private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -19,8 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.cartService.cartSubject.subscribe(cartItems => {
-      this.cartItems = cartItems;
+    this.cartService.cartSubject.subscribe(items => {
+      this.items = items;
     });
   }
 
