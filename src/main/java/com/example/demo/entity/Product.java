@@ -5,16 +5,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Table;
+import javax.persistence.Table;
 
 @Entity
-@Table(appliesTo = "product")
+@Table(name = "product")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
@@ -40,7 +38,9 @@ public class Product {
 	
 	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
 	private Set<Image> images;
-
+	
+	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
+	private Set<OrderProduct> orderProducts;
 	
 	public Product() {
 		super();
@@ -131,6 +131,14 @@ public class Product {
 
 	public void setImages(Set<Image> images) {
 		this.images = images;
+	}
+
+	public Set<OrderProduct> getOrderProducts() {
+		return orderProducts;
+	}
+
+	public void setOrderProducts(Set<OrderProduct> orderProducts) {
+		this.orderProducts = orderProducts;
 	}
 	
 	

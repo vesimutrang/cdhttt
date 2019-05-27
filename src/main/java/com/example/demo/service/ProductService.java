@@ -13,4 +13,6 @@ public interface ProductService {
 	public List<Product> getAllProduct();
 	
 	public List<ProductShortDTO> getNewProductsAsShort();
+	
+	public Product getProduct(long id);
 }

@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService{
 		});
 		return productShorts;
 	}
+
+	@Override
+	public Product getProduct(long id) {
+		return productRepository.getOne(id);
+	}
 }

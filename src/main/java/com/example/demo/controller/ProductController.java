@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ProductShortDTO;
@@ -35,6 +36,19 @@ public class ProductController {
 			return ResponseEntity.ok(responseModel);
 		} else {
 			responseModel.setErrorMessage("Cannot found any product!");
+			return new ResponseEntity<>(responseModel,HttpStatus.NOT_FOUND);
+		}
+    }
+	
+	@GetMapping("/productDetail")
+	public ResponseEntity<Object> getProduct(@RequestParam("productId") long id) {
+		Product product = productService.getProduct(id);
+		ApiResponseModel responseModel = new ApiResponseModel();
+		if (product != null) {
+			responseModel.setData(product);
+			return ResponseEntity.ok(responseModel);
+		} else {
+			responseModel.setErrorMessage("Cannot found product!");
 			return new ResponseEntity<>(responseModel,HttpStatus.NOT_FOUND);
 		}
     }
