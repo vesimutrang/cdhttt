@@ -98,7 +98,7 @@
             <div><span><i class="checkout-warning">*Kiểm tra kỹ trước khi đặt hàng</i></span></div>
             <div fxLayout="row">
               <div fxFlex="50" fxFlexOffset="50">
-                <button mat-raised-button color="accent" (click)="checkout()">Đặt hàng</button>
+                <button mat-raised-button color="accent" (click)="checkout()" [disabled]="!disableCheckoutButton">Đặt hàng</button>
               </div>
             </div>
           </div>

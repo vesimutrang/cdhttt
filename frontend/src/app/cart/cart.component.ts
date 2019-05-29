@@ -21,7 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let promises = [];
     this.cartService.getAllItems().forEach(item => {
-      let promise = this.productService.getProductShortMock(item.id).then(
+      let promise = this.productService.getProductShort(item.id).then(
         response => {
           const product: ProductShort = response.data;
           product['buyingQuantity'] = item.quantity;
