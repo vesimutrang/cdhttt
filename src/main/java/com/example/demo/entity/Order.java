@@ -67,6 +67,18 @@ public class Order {
 		super();
 	}
 
+	public Order(String receiverPhoneNumber, String shippingAddress, String note, Integer paymentMethod,
+			String code, boolean isGiftWrapping, boolean issueAnInvoice, Integer amount) {
+		this.receiverPhoneNumber = receiverPhoneNumber;
+		this.shippingAddress = shippingAddress;
+		this.note = note;
+		this.paymentMethod = paymentMethod;
+		this.code = code;
+		this.isGiftWrapping = isGiftWrapping;
+		this.issueAnInvoice = issueAnInvoice;
+		this.amount = amount;
+	}
+
 	public Order(String receiverPhoneNumber, String shippingAddress, String note, Integer paymentMethod, String code,
 			boolean isGiftWrapping, boolean issueAnInvoice, Integer amount, long createdDate,
 			Set<OrderProduct> orderProducts) {
@@ -187,6 +199,14 @@ public class Order {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 	

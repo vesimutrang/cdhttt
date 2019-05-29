@@ -44,4 +44,15 @@ public class ProductServiceImpl implements ProductService{
 	public Product getProduct(long id) {
 		return productRepository.getOne(id);
 	}
+
+	@Override
+	public ProductShortDTO getProductsAsShort(Long id) {
+		Product product = productRepository.getOne(id);
+		if (product != null) {
+			ProductShortDTO productShort = new ProductShortDTO(product.getId(), product.getName(), product.getPrice(), 
+					product.getProducer(), product.getShortDescription());
+			return productShort;
+		}
+		return null;
+	}
 }

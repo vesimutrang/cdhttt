@@ -28,6 +28,11 @@ public class Account {
 		super();
 	}
 
+	public Account(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Account(Long id, String name) {
 		super();
 		this.id = id;

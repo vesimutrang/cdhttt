@@ -24,7 +24,9 @@ public class ProductController {
 	@GetMapping("/products")
 	public ResponseEntity<Object> products() {
 		List<Product> products = productService.getAllProduct();
-        return ResponseEntity.ok(products);
+		ApiResponseModel responseModel = new ApiResponseModel();
+		responseModel.setData(products);
+        return ResponseEntity.ok(responseModel);
     }
 	
 	@GetMapping("/newProducts")
@@ -37,6 +39,18 @@ public class ProductController {
 		} else {
 			responseModel.setErrorMessage("Cannot found any product!");
 			return new ResponseEntity<>(responseModel,HttpStatus.NOT_FOUND);
+		}
+    }
+	
+	@GetMapping("/productShort")
+	public ResponseEntity<Object> getProductShort(@RequestParam("productId") long id ) {
+		ProductShortDTO product = productService.getProductsAsShort(id);
+		ApiResponseModel responseModel = new ApiResponseModel();
+		if (product == null) {
+			return new ResponseEntity<>(responseModel,HttpStatus.NOT_FOUND);
+		} else {
+			responseModel.setData(product);
+			return new ResponseEntity<>(responseModel,HttpStatus.OK);
 		}
     }
 	

@@ -15,4 +15,6 @@ public interface ProductService {
 	public List<ProductShortDTO> getNewProductsAsShort();
 	
 	public Product getProduct(long id);
+
+	public ProductShortDTO getProductsAsShort(Long id);
 }

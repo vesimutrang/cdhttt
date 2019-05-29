@@ -8,13 +8,36 @@ public class OrderCreation {
 	private String receiverPhoneNumber;
 	private String shippingAddress;
 	private String note;
-	private byte paymentMethod;
+	private Integer paymentMethod;
 	private String code;
 	private Boolean isGiftWrapping;
 	private Boolean issueAnInvoice;
 	private List<Item> items;
+	private Integer amount;
+	
+	
+	public OrderCreation() {
+		super();
+	}
+
 	public OrderCreation(Long customerId, String receiverPhoneNumber, String shippingAddress, String note,
-			byte paymentMethod, String code, Boolean isGiftWrapping, Boolean issueAnInvoice, List<Item> items) {
+			Integer paymentMethod, String code, Boolean isGiftWrapping, Boolean issueAnInvoice, List<Item> items,
+			Integer amount) {
+		super();
+		this.customerId = customerId;
+		this.receiverPhoneNumber = receiverPhoneNumber;
+		this.shippingAddress = shippingAddress;
+		this.note = note;
+		this.paymentMethod = paymentMethod;
+		this.code = code;
+		this.isGiftWrapping = isGiftWrapping;
+		this.issueAnInvoice = issueAnInvoice;
+		this.items = items;
+		this.amount = amount;
+	}
+	
+	public OrderCreation(Long customerId, String receiverPhoneNumber, String shippingAddress, String note,
+			Integer paymentMethod, String code, Boolean isGiftWrapping, Boolean issueAnInvoice, List<Item> items) {
 		super();
 		this.customerId = customerId;
 		this.receiverPhoneNumber = receiverPhoneNumber;
@@ -50,10 +73,10 @@ public class OrderCreation {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public byte getPaymentMethod() {
+	public Integer getPaymentMethod() {
 		return paymentMethod;
 	}
-	public void setPaymentMethod(byte paymentMethod) {
+	public void setPaymentMethod(Integer paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 	public String getCode() {
@@ -79,6 +102,14 @@ public class OrderCreation {
 	}
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 	
 	
