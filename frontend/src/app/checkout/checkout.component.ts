@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { CartService } from 'src/service/cart.service';
 import { ProductService } from 'src/service/product.service';
 import { ProductShort } from 'src/models/product';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { OrderService } from 'src/service/order.service';
 import { Item } from 'src/models/item';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -14,33 +16,25 @@ import { Item } from 'src/models/item';
 export class CheckoutComponent implements OnInit, OnDestroy {
   private products: ProductShort[] = [];
   private sumOfAmount: number = 0;
-  private disableCheckoutButton:Boolean;
+  private disableCheckoutButton: Boolean;
   private items: Item[];
   private myGroup: FormGroup = new FormGroup({
     customerName: new FormControl({ value: 'Phi Nguyễn', disabled: true }, Validators.required),
     customerPhoneNumber: new FormControl({ value: '', disabled: true }, Validators.required),
     shippingAdress: new FormControl({ value: '51A đường Phan Đăng Lưu, Phường 3, quận Phú Nhuận, Tp Hồ Chí Minh', disabled: false }, Validators.required),
     note: new FormControl(),
-    paymentMethod: new FormControl(),
+    paymentMethod: new FormControl(1),
     code: new FormControl(),
-    isGiftWrapping: new FormControl(),
+    isGiftWrapping: new FormControl(false),
     receiverPhoneNumber: new FormControl({ value: '', disabled: true }, Validators.required),
-    issueAnInvoice: new FormControl(),
+    issueAnInvoice: new FormControl(false),
   });
   constructor(private productService: ProductService,
     private cartService: CartService,
-    private orderService: OrderService) {
-    this.items = this.cartService.getAllItems();
-    this.items.forEach(item => {
-      productService.getProductShort(item.id).then(product => {
-        this.products.push(product.data);
-        this.products.forEach(product => {
-          product['buyingQuantity'] = item.quantity;
-          product['amount'] = product['buyingQuantity'] * product['price'];
-          this.sumOfAmount += product['amount'];
-        });
-      });
-    });
+    private orderService: OrderService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog) {
   }
 
   checkout() {
@@ -55,14 +49,33 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       shippingAddress, note, paymentMethod,
       code, isGiftWrapping, issueAnInvoice,
       this.items, this.sumOfAmount).then(response => {
-        console.log("create order successfully");
+        this.openDialog(true);
       },
-      error => {
-        console.log("FAILED cmnr!");
-      });
+        error => {
+          this.openDialog(false);
+        });
   }
 
   ngOnInit() {
+    let promises = [];
+    this.items =this.cartService.getAllItems();
+    this.items.forEach(item => {
+      let promise = this.productService.getProductShort(item.id).then(
+        response => {
+          const product: ProductShort = response.data;
+          product['buyingQuantity'] = item.quantity;
+          this.products.push(product);
+        },
+        error => { }
+      )
+      promises.push(promise);
+    });
+    Promise.all(promises).then(data => {
+      this.products.forEach(product => {
+        product['amount'] = product['buyingQuantity'] * product['price'];
+        this.sumOfAmount += product['amount'];
+      });
+    })
     this.myGroup.get('isGiftWrapping').valueChanges.subscribe(value => {
       if (value) {
         this.myGroup.get('receiverPhoneNumber').enable();
@@ -79,4 +92,38 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  openDialog(isSuccess: boolean): void {
+    const message = isSuccess ? "Quý khách đã đặt hàng thành công, nhấn Ok để trở về trang chủ." : "Thông tin chưa chính xác hoặc đơn hàng quá số lượng còn lại, hãy chỉnh sửa thông tin và thử lại!";
+    const dialogRef = this.dialog.open(DialogConfirmation, {
+      width: '400px',
+      data: message
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (isSuccess) {
+        this.cartService.cleanAll();
+        this.router.navigate(['home']);
+      }
+    });
+  }
+}
+
+
+@Component({
+  selector: 'dialog-confirmation',
+  templateUrl: 'dialog-confirmation.html',
+})
+export class DialogConfirmation {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogConfirmation>,
+    @Inject(MAT_DIALOG_DATA) public message: String) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  clickOk(): void {
+    this.dialogRef.close();
+  }
 }

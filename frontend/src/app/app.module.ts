@@ -41,7 +41,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryComponent } from './category/category.component';
 import { SearchComponent } from './search/search.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent, DialogConfirmation } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
@@ -60,7 +60,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CheckoutComponent,
     CartComponent,
     LoginComponent,
-    NewProductsComponent
+    NewProductsComponent,
+    DialogConfirmation
   ],
   imports: [
     BrowserModule,
@@ -104,6 +105,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [DialogConfirmation],
   providers: [],
   bootstrap: [AppComponent]
 })

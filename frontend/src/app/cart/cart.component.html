@@ -34,7 +34,7 @@
                     </div>
                     <div>
                       <mat-form-field class="input-quantity">
-                        <input matInput type="number" [value]="item.buyingQuantity" min="1" max="{{item.maxQuantity}}" (input)="onQuantityChange(item, $event.target.value)">
+                        <input matInput type="number" [value]=item.buyingQuantity min=1 max={{item.maxQuantity}} (input)="onQuantityChange(item, $event.target.value)">
                       </mat-form-field>
                     </div>
                   </div>
@@ -58,7 +58,7 @@
                 <div class="delte-item" fxFlex="5%">
                   <div fxLayout="column">
                     <div>
-                      <button mat-button (click)="deleteItem()">X</button>
+                      <button mat-button (click)="deleteItem(item)">X</button>
                     </div>
                   </div>
                 </div>
