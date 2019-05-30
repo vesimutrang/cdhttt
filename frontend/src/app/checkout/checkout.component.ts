@@ -14,11 +14,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
-  private products: ProductShort[] = [];
-  private sumOfAmount: number = 0;
-  private disableCheckoutButton: Boolean;
+  products: ProductShort[] = [];
+  sumOfAmount: number = 0;
+  disableCheckoutButton: Boolean;
+  disablereceiverPhoneNumberInput: Boolean;
   private items: Item[];
-  private myGroup: FormGroup = new FormGroup({
+  myGroup: FormGroup = new FormGroup({
     customerName: new FormControl({ value: 'Phi Nguyễn', disabled: true }, Validators.required),
     customerPhoneNumber: new FormControl({ value: '', disabled: true }, Validators.required),
     shippingAdress: new FormControl({ value: '51A đường Phan Đăng Lưu, Phường 3, quận Phú Nhuận, Tp Hồ Chí Minh', disabled: false }, Validators.required),
@@ -26,7 +27,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     paymentMethod: new FormControl(1),
     code: new FormControl(),
     isGiftWrapping: new FormControl(false),
-    receiverPhoneNumber: new FormControl({ value: '', disabled: true }, Validators.required),
+    receiverPhoneNumber: new FormControl(),
     issueAnInvoice: new FormControl(false),
   });
   constructor(private productService: ProductService,
@@ -86,6 +87,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.disableCheckoutButton = this.myGroup.valid;
     this.myGroup.valueChanges.subscribe((changedObj: any) => {
       this.disableCheckoutButton = this.myGroup.valid;
+    });
+
+    this.disablereceiverPhoneNumberInput = this.myGroup.get('isGiftWrapping').value;
+    this.myGroup.get('isGiftWrapping').valueChanges.subscribe((changedObj: any) => {
+      this.disablereceiverPhoneNumberInput = !changedObj;
     });
   }
 

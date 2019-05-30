@@ -48,7 +48,7 @@
               <section class="example-section">
                 <mat-checkbox formControlName="isGiftWrapping">Bọc quà tặng</mat-checkbox>
                 <mat-form-field class="user-info" style="margin-left: 15px;">
-                  <input matInput formControlName="receiverPhoneNumber" placeholder="Số điện thoại người nhận" *ngIf="!isGiftWrapping">
+                  <input matInput formControlName="receiverPhoneNumber" placeholder="Số điện thoại người nhận" disabled="disablereceiverPhoneNumberInput">
                 </mat-form-field>
               </section>
               <section class="example-section">

@@ -27,7 +27,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
 	
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
 	private String receiverPhoneNumber;
 	
 	@Column(nullable = false, length = 200)
