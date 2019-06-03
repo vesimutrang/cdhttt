@@ -18,7 +18,7 @@
         <div class="product-card-div" fxFlex="25%" *ngFor="let product of newProducts">
           <mat-card class="product-card" (click)="navigate(product.id)">
             <mat-card-header>
-              <mat-card-title class="product-title"> <strong>{{ product.name }}</strong></mat-card-title>
+              <mat-card-title class="product-title"> <div class="product-title"><strong>{{ product.name }}</strong></div> </mat-card-title>
             </mat-card-header>
             <img mat-card-image [src]="product.image" alt="Product image">
             <mat-card-content>
