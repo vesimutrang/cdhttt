@@ -46,7 +46,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const code = this.myGroup.get("code").value;
     const isGiftWrapping = this.myGroup.get("isGiftWrapping").value;
     const issueAnInvoice = this.myGroup.get("issueAnInvoice").value;
-    this.orderService.createOrder(7, receiverPhoneNumber,
+    this.orderService.createOrder(1, receiverPhoneNumber,
       shippingAddress, note, paymentMethod,
       code, isGiftWrapping, issueAnInvoice,
       this.items, this.sumOfAmount).then(response => {
