@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -41,6 +43,9 @@ public class User{
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	private Set<Order> orders;
+	
 	public User() {
 		super();
 	}
@@ -54,6 +59,20 @@ public class User{
 		super();
 		this.userId = userId;
 		this.username = username;
+	}
+
+	
+	public User(@NotEmpty(message = "Vui lòng nhập First Name") String firstName,
+			@NotEmpty(message = "Vui lòng nhập Last Name") String lastName,
+			@NotEmpty(message = "Vui lòng nhập Phone") String phone,
+			@NotEmpty(message = "Vui lòng nhập email hoặc số điện thoại") String username,
+			@NotEmpty(message = "Vui lòng nhập password") String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.username = username;
+		this.password = password;
 	}
 
 	public User(Long userId, String username, String password, Set<Role> roles) {
@@ -126,6 +145,14 @@ public class User{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 
 }

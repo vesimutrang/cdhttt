@@ -9,8 +9,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.repository.UserRepository;
 
 @Component
 public class AddingSampleData {
@@ -19,7 +19,7 @@ public class AddingSampleData {
     private ProductRepository productRepository;
     
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @EventListener
     @Transactional
@@ -131,7 +131,7 @@ public class AddingSampleData {
     	d10.setImages(images10);
     	productRepository.save(d10);
     	
-    	Account account = new Account("Nguyen Trung Phi");
-    	accountRepository.save(account);
+    	User account = new User("Nguyen", "Tuan", "0123456789", "nt2000", "123abc");
+    	userRepository.save(account);
     }
 }

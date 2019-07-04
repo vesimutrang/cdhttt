@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entity.Account;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderProduct;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.User;
 import com.example.demo.model.Item;
 import com.example.demo.model.OrderCreation;
-import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.OrderService;
 
 import javassist.NotFoundException;
@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService{
 	OrderRepository orderRepository;
 
 	@Autowired
-	AccountRepository accountRepository;
+	UserRepository userRepository;
 	
 	@Autowired
 	ProductRepository productRepository;
@@ -35,9 +35,9 @@ public class OrderServiceImpl implements OrderService{
 	@Transactional(rollbackFor = Exception.class)
 	public boolean createOrder(OrderCreation orderModel) throws NotFoundException {
 		// can using Spring security to get credential 
-		Account account = accountRepository.getOne(orderModel.getCustomerId());
-		if (account == null) {
-			throw new NotFoundException(String.format("Cannot found user id = %s", account.getId()));
+		User user = userRepository.getOne(orderModel.getCustomerId());
+		if (user == null) {
+			throw new NotFoundException(String.format("Cannot found user id = %s", user.getUserId()));
 		}
 		Order order = new Order(orderModel.getReceiverPhoneNumber(),
 				orderModel.getShippingAddress(), orderModel.getNote(),
@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService{
 			orderProducts.add(orderProduct);
 		}
 		order.setOrderProducts(orderProducts);
-		order.setAccount(account);
+		order.setUser(user);
 		orderRepository.save(order);
 		return true;
 	}
