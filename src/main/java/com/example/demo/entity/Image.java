@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,7 +25,8 @@ public class Image {
 	@Column(name="description", nullable = true, length = 200)
 	private String description;
 	
-	@Column(name="source", nullable = false, columnDefinition="TEXT")
+	@Column(name="source", nullable = false, columnDefinition="LONGTEXT")
+	@Lob
 	private String source;
 	
 	@ManyToOne

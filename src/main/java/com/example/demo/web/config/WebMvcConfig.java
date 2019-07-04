@@ -12,12 +12,10 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-      registry.addResourceHandler("/**/*")
-        .addResourceLocations("classpath:/static/")
-        .resourceChain(true)
+		registry.addResourceHandler("/**/*").addResourceLocations("classpath:/static/").resourceChain(true)
         .addResolver(new PathResourceResolver() {
             @Override
             protected Resource getResource(String resourcePath,
@@ -27,5 +25,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 : new ClassPathResource("/static/index.html");
             }
         });
-    }
+
+		registry.addResourceHandler("/admin/oss/**").addResourceLocations("/WEB-INF/admin/oss/");
+		registry.addResourceHandler("/admin/customs/**").addResourceLocations("/WEB-INF/admin/customs/");
+	}
 }
