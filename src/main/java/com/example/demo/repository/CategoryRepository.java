@@ -9,6 +9,7 @@ import com.example.demo.entity.Category;
 
 public interface CategoryRepository extends DataTablesRepository<Category, Long> {
 
+
 	// Select category Perant
 	List<Category> findByCategoryParentIsNull();
 
