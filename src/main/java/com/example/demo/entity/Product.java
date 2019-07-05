@@ -18,7 +18,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
 	
-	@Column(name="name", nullable = false, length = 100)
+	@Column(name="name", nullable = false, columnDefinition = "nvarchar(100)")
 	private String name;
 	
 	@Column(name="price", nullable = false)
@@ -30,10 +30,10 @@ public class Product {
 	@Column(name="producer", nullable = true, length = 200)
 	private String producer;
 	
-	@Column(nullable = true, length = 100)
+	@Column(nullable = true, columnDefinition = "nvarchar(1000)")
 	private String shortDescription;
 	
-	@Column(nullable = true, length = 2000)
+	@Column(nullable = true, columnDefinition = "nvarchar(3000)")
 	private String description;
 	
 	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)

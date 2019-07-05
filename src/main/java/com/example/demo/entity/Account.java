@@ -16,7 +16,7 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
 	
-	@Column(name="name", nullable = false, length = 100)
+	@Column(name="name", nullable = false, columnDefinition = "nvarchar(100)")
 	private String name;
 	
 	// more information: birthday, gender..

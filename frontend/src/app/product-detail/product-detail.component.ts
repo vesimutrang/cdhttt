@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'src/service/product.service';
 import { CartService } from 'src/service/cart.service';
 import { ProductDetail } from 'src/models/productDetail';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,12 +13,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   product: ProductDetail;
   quantity: number = 1;
   constructor(private productService: ProductService,
-    private cartService: CartService) {
+    private cartService: CartService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.productService.getProduct(1).then(res => {
-      this.product = res.data;
+    this.route.params.subscribe(params => {
+      this.productService.getProduct(params['id']).then(res => {
+        this.product = res.data;
+      });
     });
   }
 

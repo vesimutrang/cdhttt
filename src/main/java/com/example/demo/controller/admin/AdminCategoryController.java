@@ -97,5 +97,4 @@ public class AdminCategoryController {
 	public DataTablesOutput<Category> list(@Valid DataTablesInput input) {
 		return categoryService.findAll(input);
 	}
-
 }

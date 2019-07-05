@@ -36,7 +36,7 @@ export class CartService {
   removeItem(productId: number): any {
     // calculate
     this.items = this.items.filter(i => {
-      return i.id === productId;
+      return i.id !== productId;
     });
     localStorage.setItem('items',JSON.stringify(this.items));
     this.cartSubject.next(this.items);
@@ -57,4 +57,9 @@ export class CartService {
     return this.items;
   }
 
+  cleanAll() {
+    localStorage.removeItem("items");
+    this.items = [];
+    this.cartSubject.next(this.items);
+  }
 }

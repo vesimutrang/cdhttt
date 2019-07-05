@@ -11,8 +11,7 @@
           <mat-card-content>
             <span>Hãng: {{product.producer}}</span>
             <br>
-            <p>
-                {{product.shortDescription}}
+            <p [innerHtml]="product.shortDescription">
             </p>
           </mat-card-content>
           <mat-card-actions>

@@ -27,13 +27,13 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
 	
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
 	private String receiverPhoneNumber;
 	
-	@Column(nullable = false, length = 200)
+	@Column(nullable = false, columnDefinition = "nvarchar(300)")
 	private String shippingAddress;
 	
-	@Column(nullable = true, length = 200)
+	@Column(nullable = true, columnDefinition = "nvarchar(200)")
 	private String note;
 	
 	@Column(nullable = false)

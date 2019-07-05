@@ -4,6 +4,7 @@ import { CartService } from '../../service/cart.service';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductShort } from 'src/models/product';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-cart',
@@ -40,15 +41,21 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cartService.cartSubject.unsubscribe();
   }
 
-  onQuantityChange(item, value) {
-    item['buyingQuantity'] = value;
-    item['amount'] = item['buyingQuantity'] * item['price'];
-    this.sumOfAmount += item['amount'];
-    console.log(item['buyingQuantity'], item['price'], item.amount);
-    console.log(value);
+  onQuantityChange(product: ProductShort, quantity: number) {
+    quantity = Number(quantity);
+    product['buyingQuantity'] = quantity;
+    product['amount'] = product['buyingQuantity'] * product.price;
+    this.sumOfAmount += product['amount'];
+    this.cartService.changeItemQuantity(product.id, quantity);
+  }
+
+  deleteItem(product: ProductShort){
+    this.cartService.removeItem(product.id);
+    this.products = this.products.filter(pro => {
+      return pro.id !== product.id;
+    });
   }
 
   checkout() {

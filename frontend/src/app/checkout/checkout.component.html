@@ -30,8 +30,8 @@
 
               <section class="example-section">
                 <mat-radio-group formControlName="paymentMethod">
-                  <mat-radio-button checked value="after">Thanh toán khi nhận hàng (COD)</mat-radio-button>
-                  <mat-radio-button class="example-margin" value="before">Thẻ ATM nội địa</mat-radio-button>
+                  <mat-radio-button [value]=1>Thanh toán khi nhận hàng (COD)</mat-radio-button>
+                  <mat-radio-button class="example-margin" [value]=2>Thẻ ATM nội địa</mat-radio-button>
                 </mat-radio-group>
               </section>
 
@@ -48,7 +48,7 @@
               <section class="example-section">
                 <mat-checkbox formControlName="isGiftWrapping">Bọc quà tặng</mat-checkbox>
                 <mat-form-field class="user-info" style="margin-left: 15px;">
-                  <input matInput formControlName="receiverPhoneNumber" placeholder="Số điện thoại người nhận" *ngIf="!isGiftWrapping">
+                  <input matInput formControlName="receiverPhoneNumber" placeholder="Số điện thoại người nhận" disabled="disablereceiverPhoneNumberInput">
                 </mat-form-field>
               </section>
               <section class="example-section">
