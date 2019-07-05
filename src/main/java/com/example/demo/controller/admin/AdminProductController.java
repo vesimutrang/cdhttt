@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.demo.repository.ProductRepository;
 import com.example.demo.service.ProductService;
 
 @Controller
@@ -13,10 +14,12 @@ public class AdminProductController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	ProductRepository productRepository;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String pageAdminProduct() {
 		return "admin/admin-product";
 	}
-
 }

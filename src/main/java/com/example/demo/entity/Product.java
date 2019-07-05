@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,35 +19,39 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generator")
 	private Long id;
-	
-	@Column(name="name", nullable = false, columnDefinition = "nvarchar(100)")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "categoryId")
+	private Category category;
+
+	@Column(name = "name", nullable = false, columnDefinition = "nvarchar(100)")
 	private String name;
-	
-	@Column(name="price", nullable = false)
+
+	@Column(name = "price", nullable = false)
 	private Integer price;
-	
-	@Column(name="max_quanlity", nullable = false)
+
+	@Column(name = "max_quanlity", nullable = false)
 	private Integer maxQuanlity;
-	
-	@Column(name="producer", nullable = true, length = 200)
+
+	@Column(name = "producer", nullable = true, length = 200)
 	private String producer;
-	
+
 	@Column(nullable = true, columnDefinition = "nvarchar(1000)")
 	private String shortDescription;
-	
+
 	@Column(nullable = true, columnDefinition = "nvarchar(3000)")
 	private String description;
-	
-	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<Image> images;
-	
-	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<OrderProduct> orderProducts;
-	
+
 	public Product() {
 		super();
 	}
-	
+
 	public Product(String name, Integer price, Integer maxQuanlity, String producer, String shortDescription,
 			String description) {
 		super();
@@ -56,7 +62,7 @@ public class Product {
 		this.shortDescription = shortDescription;
 		this.description = description;
 	}
-	
+
 	public Product(String name, Integer price, Integer maxQuanlity, String producer, String shortDescription,
 			String description, Set<Image> images) {
 		super();
@@ -140,6 +146,5 @@ public class Product {
 	public void setOrderProducts(Set<OrderProduct> orderProducts) {
 		this.orderProducts = orderProducts;
 	}
-	
-	
+
 }
