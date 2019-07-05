@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/admin-layout}">
+
+<head>
+<title>User</title>
+</head>
+<th:block layout:fragment="stylesheets">
+	<link rel="stylesheet" href="/admin/oss/vendor/datatables/dataTables.bootstrap4.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="javascripts">
+  	<script src="/admin/oss/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="/admin/oss/vendor/datatables/dataTables.bootstrap4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript" src="" th:src="@{/admin/customs/js/jquery.spring-friendly.js}"></script>
+	<script type="text/javascript" src="" th:src="@{/admin/customs/js/user.js}"></script>
+</th:block>
+<body id="page-top">
+        <div layout:fragment="content" class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Quán Lý Người Dùng</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            <div class="float-right mr-3">
+	          <a href="/admin/user/add" class="btn btn-success btn-sm">Thêm Mới</a>
+	      	</div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="user-dataTable" width="100%" cellspacing="0">
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+</body>
+</html>

@@ -26,12 +26,12 @@ public class Category {
 	@NotEmpty(message = "Vui lòng nhập tên")
 	private String name;
 
-	@JsonBackReference(value = "categoryChildrens")
 	@OneToMany
 	@JoinColumn(name = "parent_id")
 	@OrderBy("sortorder ASC")
 	private List<Category> categoryChildrens = new ArrayList<Category>();
 
+	@JsonBackReference(value = "categoryChildrens")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // nếu Lazy thống bào mới tạo json được
 	@ManyToOne(fetch = FetchType.LAZY) // optional = false runtime, nullable=false không cho column null csdl
 	@JoinColumn(name = "parent_id")
