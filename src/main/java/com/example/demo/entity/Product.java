@@ -5,11 +5,17 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "product")
@@ -41,6 +47,12 @@ public class Product {
 	
 	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
 	private Set<OrderProduct> orderProducts;
+	
+
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	@JsonIgnore
+	private Category category;
 	
 	public Product() {
 		super();
@@ -145,6 +157,14 @@ public class Product {
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", maxQuanlity=" + maxQuanlity
 				+ ", producer=" + producer + "]";
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 	

@@ -36,6 +36,9 @@ public class Category {
 	@ManyToOne(fetch = FetchType.LAZY) // optional = false runtime, nullable=false không cho column null csdl
 	@JoinColumn(name = "parent_id")
 	private Category categoryParent;
+	
+	@OneToMany(mappedBy = "category")
+	private List<Product> listProducts; 
 
 	private int sortorder;
 	private int status;
@@ -87,5 +90,14 @@ public class Category {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public List<Product> getListProducts() {
+		return listProducts;
+	}
+
+	public void setListProducts(List<Product> listProducts) {
+		this.listProducts = listProducts;
+	}
+	
 
 }

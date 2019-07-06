@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.service.CategoryService;
 import com.example.demo.service.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,28 +30,31 @@ public class AdminProductController {
 	ProductService productService;
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	CategoryService categoryService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String pageAdminProduct() {
 		return "admin/admin-product";
 	}
+
 	@RequestMapping(value = "/datatable", method = RequestMethod.GET)
 	@ResponseBody
 	public DataTablesOutput<Product> list(@Valid DataTablesInput input) {
 		return productService.findAll(input);
 	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String getFormProductEdit(
 			@RequestParam(value = "productId", required = false, defaultValue = "") Long productId, Model model) {
 		Product product = productService.getProduct(productId);
 		model.addAttribute("product", product);
-		model.addAttribute("products", productService.getAllProduct());
+		model.addAttribute("categorys", categoryService.getCategoryAll());
 		return "admin/admin-product-form-edit";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String update(@Valid Product product, BindingResult bindResult, Model model) {
-
 		model.addAttribute("products", productService.getAllProduct());
 		if (bindResult.hasErrors()) {
 			return "admin/admin-product-form-edit";
@@ -60,17 +64,17 @@ public class AdminProductController {
 
 		return "redirect:/admin/product";
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getFormCategory(Product product, Model model) {
 		model.addAttribute("products", productService.getAllProduct());
+		model.addAttribute("categorys", categoryService.getCategoryAll());
 		return "admin/admin-product-form";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String save(@Valid Product product, BindingResult bindResult, Model model) {
-
-		model.addAttribute("categorys", productService.getAllProduct());
+		model.addAttribute("products", productService.getAllProduct());
 		if (bindResult.hasErrors()) {
 			return "admin/admin-product-form";
 		}
@@ -79,6 +83,7 @@ public class AdminProductController {
 
 		return "redirect:/admin/product";
 	}
+
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String delete(@RequestParam() Long productId) {

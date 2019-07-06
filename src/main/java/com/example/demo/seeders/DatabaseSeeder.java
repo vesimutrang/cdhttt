@@ -51,32 +51,28 @@ public class DatabaseSeeder {
 		Category categoryCheck = categoryRepository.findTopByOrderByNameDesc();
 		if (categoryCheck == null) {
 			Category category1 = new Category();
-			category1.setName("Văn Học");
+			category1.setName("Màn hình, bàn phím, chuột");
 			categoryRepository.save(category1);
 
 			Category category2 = new Category();
-			category2.setName("Kiến Trúc");
+			category2.setName("Bộ nhớ RAM, HHD, SSD, USB");
 			categoryRepository.save(category2);
 
 			Category category3 = new Category();
-			category3.setName("Tiểu thuyết");
+			category3.setName("Bộ vi xử lý Intel, ADM..");
 			categoryRepository.save(category3);
 
 			Category category4 = new Category();
-			category4.setName("Khoa Học");
+			category4.setName("Bộ Pc gamming, office, graphic");
 			categoryRepository.save(category4);
 
 			Category category5 = new Category();
-			category5.setName("Toán Học");
+			category5.setName("Tự build máy");
 			categoryRepository.save(category5);
 
 			Category category6 = new Category();
-			category6.setName("Kinh Tế");
+			category6.setName("Sản phẩm khác");
 			categoryRepository.save(category6);
-
-			Category category7 = new Category();
-			category7.setName("Mỹ Thuật");
-			categoryRepository.save(category7);
 
 		}
 	}
