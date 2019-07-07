@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/admin-layout}">
+
+<head>
+<title>Product Form</title>
+</head>
+<th:block layout:fragment="stylesheets">
+	<link rel="stylesheet" href="/admin/oss/vendor/datatables/dataTables.bootstrap4.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="javascripts">
+  	<script src="/admin/oss/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="/admin/oss/vendor/datatables/dataTables.bootstrap4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript" src="" th:src="@{/admin/customs/js/jquery.spring-friendly.js}"></script>
+	<script type="text/javascript" src="" th:src="@{/admin/customs/js/product.js}"></script>
+</th:block>
+<body id="page-top">
+        <div layout:fragment="content" class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Thêm/Sửa thông tin sản phẩm</h1>
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            </div>
+            <div class="card-body">
+					<form id="form-product" action="#" th:action="@{/admin/product/add}" th:object="${product}" method="post" class="forms-sample">
+					
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('id')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">ID</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{id}" class="form-control" disabled="disabled">
+					      <input type="text" th:field="*{id}" class="form-control" hidden>
+					    </div>
+					  </div>
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">Name</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{name}" class="form-control" >
+					      <label th:errors="*{name}" class="mt-2 text-danger" for="name">Category Name Error.</label>
+					    </div>
+					  </div>
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('price')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">Price</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{price}" class="form-control" >
+					      <label th:errors="*{price}" class="mt-2 text-danger" for="name">Category Name Error.</label>
+					    </div>
+					  </div>
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('maxQuanlity')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">Max quanlity</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{maxQuanlity}" class="form-control" >
+					      <label th:errors="*{maxQuanlity}" class="mt-2 text-danger" for="name">Category Name Error.</label>
+					    </div>
+					  </div>
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('producer')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">Producer</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{producer}" class="form-control" >
+					      <label th:errors="*{producer}" class="mt-2 text-danger" for="name">Category Name Error.</label>
+					    </div>
+					  </div>
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('shortDescription')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">Short Description</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{shortDescription}" class="form-control" >
+					      <label th:errors="*{shortDescription}" class="mt-2 text-danger" for="name">Category Name Error.</label>
+					    </div>
+					  </div>
+					  <div class="form-group row" th:classappend="${#fields.hasErrors('description')} ? has-danger : ''">
+					    <label class="col-sm-3 col-form-label" th:for="id">Description</label>
+					    <div class="col-sm-9">
+					      <input type="text" th:field="*{description}" class="form-control" >
+					      <label th:errors="*{description}" class="mt-2 text-danger" for="name">Category Name Error.</label>
+					    </div>
+					  </div>
+					  <button type="submit" class="btn btn-primary mr-2" >Save</button>
+					</form>
+            </div>
+          </div>
+
+        </div>
+</body>
+</html>

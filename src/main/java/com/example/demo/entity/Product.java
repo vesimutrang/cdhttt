@@ -140,6 +140,12 @@ public class Product {
 	public void setOrderProducts(Set<OrderProduct> orderProducts) {
 		this.orderProducts = orderProducts;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", maxQuanlity=" + maxQuanlity
+				+ ", producer=" + producer + "]";
+	}
 	
 	
 }

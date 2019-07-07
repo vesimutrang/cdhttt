@@ -8,6 +8,8 @@ import com.example.demo.entity.Category;
 public interface CategoryService {
 
 	Category save(Category category);
+	
+	String categoryTreeJson();
 
 	void delete(Long categoryId);
 

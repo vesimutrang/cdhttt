@@ -48,8 +48,7 @@ public class DatabaseSeeder {
 
 	private void seedCategorysTable() {
 
-		Iterable<Category> categoryCheck = categoryRepository.findAll();
-
+		Category categoryCheck = categoryRepository.findTopByOrderByNameDesc();
 		if (categoryCheck == null) {
 			Category category1 = new Category();
 			category1.setName("Văn Học");
