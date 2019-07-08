@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ProductShortDTO;
 import com.example.demo.entity.Product;
+import com.example.demo.repository.AdminProductRepository;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.service.ProductService;
 
@@ -15,6 +18,8 @@ import com.example.demo.service.ProductService;
 public class ProductServiceImpl implements ProductService{
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	AdminProductRepository adminProductRepository;
 	
 	@Override
 	public List<Product> getAllProduct() {
@@ -55,4 +60,11 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return null;
 	}
+
+	@Override
+	public DataTablesOutput<Product> findAll(DataTablesInput input) {
+		// TODO Auto-generated method stub
+		return adminProductRepository.findAll(input);
+	}
+
 }

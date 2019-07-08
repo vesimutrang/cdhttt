@@ -59,9 +59,9 @@ public class Order {
 	private Set<OrderProduct> orderProducts;
 	
 	@ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
 	@JsonIgnore
-    private Account account;
+    private User user;
 
 	public Order() {
 		super();
@@ -201,13 +201,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public Account getAccount() {
-		return account;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-	
+
 }

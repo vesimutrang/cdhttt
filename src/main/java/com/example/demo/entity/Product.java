@@ -147,4 +147,14 @@ public class Product {
 		this.orderProducts = orderProducts;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", maxQuanlity=" + maxQuanlity
+				+ ", producer=" + producer + "]";
+	}
+	
+	
+>>>>>>> branch 'master' of https://github.com/phinguyen202/cdhttt.git
 }
